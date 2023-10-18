@@ -14,3 +14,4 @@ app.post("/", (req, res) => {
 app.listen(port, () => {
   console.log("Server starting...");
 });
+module.exports = app;
