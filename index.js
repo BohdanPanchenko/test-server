@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 
   transporter.sendMail(mailOptions);
 
-  res.send(200);
+  res.sendStatus(200);
 });
 
 app.listen(port, () => {
