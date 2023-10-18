@@ -26,16 +26,20 @@ app.get("/", (req, res) => {
   //   fs.appendFile("hello.txt", el, () => {});
   // });
 
-  const mailOptions = {
-    from: emailConfig.auth.user,
-    to: recipientEmail,
-    subject: "Новый посетитель!",
-    text: `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`,
-  };
+  try {
+    const mailOptions = {
+      from: emailConfig.auth.user,
+      to: recipientEmail,
+      subject: "Новый посетитель!",
+      text: `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`,
+    };
 
-  transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptions);
 
-  res.sendStatus(200);
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.listen(port, () => {
