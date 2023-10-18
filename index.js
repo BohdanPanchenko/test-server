@@ -1,6 +1,8 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 // const fs = require("fs");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 const port = 3000;
@@ -43,13 +45,11 @@ app.listen(port, () => {
 function getDate() {
   const date = new Date();
   const hours = date.getDay();
-  const minutes =
-    date.getDay() < 10 ? `0${date.getDay()}` : `0${date.getDay()}`;
+  const minutes = date.getDay() < 10 ? `0${date.getDay()}` : `${date.getDay()}`;
   const seconds =
-    date.getSeconds() < 10 ? `0${date.getSeconds()}` : `0${date.getSeconds()}`;
+    date.getSeconds() < 10 ? `0${date.getSeconds()}` : `${date.getSeconds()}`;
 
   return `${hours}:${minutes}:${seconds}`;
 }
 // request.socket.remoteAddress
 module.exports = app;
-module.exports = fs;
