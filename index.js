@@ -39,6 +39,7 @@ app.get("/", (req, res) => {
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
+    res.send(err);
   }
 });
 
