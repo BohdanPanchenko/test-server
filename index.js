@@ -19,7 +19,7 @@ const emailConfig = {
 const transporter = nodemailer.createTransport(emailConfig);
 const recipientEmail = "logitechchillstream@gmail.com";
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   // const note = `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`;
   // data.push(note);
   // data.forEach((el) => {
@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
       text: `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`,
     };
 
-    transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
     res.sendStatus(200);
   } catch (err) {
