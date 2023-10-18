@@ -8,6 +8,7 @@ const data = [];
 
 app.get("/", (req, res) => {
   fs.writeFile("hello.txt", "У вас новый посетитель!");
+  res.json("200");
 });
 
 app.post("/", (res, req) => {
@@ -18,3 +19,4 @@ app.listen(port, () => {
   console.log("Server starting...");
 });
 module.exports = app;
+module.exports = fs;
