@@ -6,7 +6,7 @@ app.get("/items", (req, res) => {
   res.send("Hi, there!");
 });
 app.get("/", (req, res) => {
-  res.send("<h3>Hello, suckers!</h3>");
+  res.json("<h3>Hello, suckers!</h3>");
 });
 app.listen(port, () => {
   console.log("Server starting...");
