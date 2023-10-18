@@ -48,8 +48,9 @@ app.listen(port, () => {
 
 function getDate() {
   const date = new Date();
-  const hours = date.getDay();
-  const minutes = date.getDay() < 10 ? `0${date.getDay()}` : `${date.getDay()}`;
+  const hours = date.getHours();
+  const minutes =
+    date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
   const seconds =
     date.getSeconds() < 10 ? `0${date.getSeconds()}` : `${date.getSeconds()}`;
 
