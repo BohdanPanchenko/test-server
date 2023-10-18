@@ -1,13 +1,19 @@
 const express = require("express");
+const fs = require("fs");
+
 const app = express();
 const port = 3000;
 
-app.get("/items", (req, res) => {
-  res.send("Hi, there!");
-});
+const data = [];
+
 app.get("/", (req, res) => {
-  res.json("<h3>Hello, suckers!</h3>");
+  fs.writeFile("hello.txt", "У вас новый посетитель!");
 });
+
+app.post("/", (res, req) => {
+  fs.writeFile("hello.txt", "У вас новый посетитель!");
+});
+
 app.listen(port, () => {
   console.log("Server starting...");
 });
