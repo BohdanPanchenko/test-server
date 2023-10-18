@@ -8,9 +8,6 @@ app.get("/items", (req, res) => {
 app.get("/", (req, res) => {
   res.send("<h3>Hello, suckers!</h3>");
 });
-app.post("/", (req, res) => {
-  console.log(req.body);
-});
 app.listen(port, () => {
   console.log("Server starting...");
 });
