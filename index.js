@@ -8,7 +8,7 @@ const port = 3000;
 const jsonBodyMiddleware = express.json();
 app.use(jsonBodyMiddleware);
 
-const data = {};
+let data = {};
 const emailConfig = {
   service: "gmail",
   auth: {
