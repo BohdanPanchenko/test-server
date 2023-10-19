@@ -38,7 +38,7 @@ const recipientEmail = "logitechchillstream@gmail.com";
 // });
 app.post("/", (req, res) => {
   try {
-    data = req.body;
+    sendMessage(req.body);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
@@ -68,5 +68,4 @@ function getDate() {
 
   return `${hours}:${minutes}:${seconds}`;
 }
-sendMessage(data);
 module.exports = app;
