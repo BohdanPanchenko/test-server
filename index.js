@@ -36,7 +36,7 @@ const recipientEmail = "logitechchillstream@gmail.com";
 //   }
 // });
 app.post("/", (req, res) => {
-  req.on("data", async () => {
+  req.on("end", async () => {
     try {
       const mailOptions = {
         from: emailConfig.auth.user,
