@@ -1,15 +1,12 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
 dotenv.config();
 
 const app = express();
 const port = 3000;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-// const jsonBodyMiddleware = express.json();
-// app.use(jsonBodyMiddleware);
+const jsonBodyMiddleware = express.json();
+app.use(jsonBodyMiddleware);
 
 let data = {};
 const emailConfig = {
