@@ -8,6 +8,7 @@ const port = 3000;
 const jsonBodyMiddleware = express.json();
 app.use(jsonBodyMiddleware);
 
+const data = {};
 const emailConfig = {
   service: "gmail",
   auth: {
@@ -35,20 +36,9 @@ const recipientEmail = "logitechchillstream@gmail.com";
 //     res.send(err);
 //   }
 // });
-app.post("/", async (req, res) => {
-  await req.body;
+app.post("/", (req, res) => {
   try {
-    const mailOptions = {
-      from: emailConfig.auth.user,
-      to: recipientEmail,
-      subject: "Новый посетитель!",
-      text: `У вас новый посетитель! ${getDate()} ip-address ${
-        req.body.ip || req.ip
-      } \n`,
-    };
-
-    await transporter.sendMail(mailOptions);
-
+    data = req.body;
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
@@ -58,7 +48,16 @@ app.post("/", async (req, res) => {
 app.listen(port, () => {
   console.log("Server starting...");
 });
+async function sendMessage(data) {
+  const mailOptions = {
+    from: emailConfig.auth.user,
+    to: recipientEmail,
+    subject: "Новый посетитель!",
+    text: `У вас новый посетитель! ${getDate()} ip-address ${data.city} \n`,
+  };
 
+  await transporter.sendMail(mailOptions);
+}
 function getDate() {
   const date = new Date();
   const hours = date.getHours();
@@ -69,5 +68,5 @@ function getDate() {
 
   return `${hours}:${minutes}:${seconds}`;
 }
-// request.socket.remoteAddress
+sendMessage(data);
 module.exports = app;
