@@ -47,7 +47,7 @@ app.post("/", (req, res) => {
 
     // await transporter.sendMail(mailOptions);
     // res.sendStatus(200);
-    res.send({ city: req.body.city });
+    res.send({ text: "hello" });
   } catch (err) {
     console.log(err);
     res.send(err);
