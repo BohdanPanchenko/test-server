@@ -37,6 +37,7 @@ const recipientEmail = "logitechchillstream@gmail.com";
 // });
 app.post("/", async (req, res) => {
   try {
+    await req.body;
     const mailOptions = {
       from: emailConfig.auth.user,
       to: recipientEmail,
