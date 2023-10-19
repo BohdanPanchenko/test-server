@@ -1,13 +1,10 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
-// const fs = require("fs");
 const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
 const port = 3000;
-
-// const data = [];
 
 const emailConfig = {
   service: "gmail",
@@ -19,19 +16,30 @@ const emailConfig = {
 const transporter = nodemailer.createTransport(emailConfig);
 const recipientEmail = "logitechchillstream@gmail.com";
 
-app.get("/", async (req, res) => {
-  // const note = `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`;
-  // data.push(note);
-  // data.forEach((el) => {
-  //   fs.appendFile("hello.txt", el, () => {});
-  // });
+// app.get("/", async (req, res) => {
+//   try {
+//     const mailOptions = {
+//       from: emailConfig.auth.user,
+//       to: recipientEmail,
+//       subject: "Новый посетитель!",
+//       text: `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`,
+//     };
 
+//     await transporter.sendMail(mailOptions);
+
+//     res.sendStatus(200);
+//   } catch (err) {
+//     console.log(err);
+//     res.send(err);
+//   }
+// });
+app.post("/", async (req, res) => {
   try {
     const mailOptions = {
       from: emailConfig.auth.user,
       to: recipientEmail,
       subject: "Новый посетитель!",
-      text: `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`,
+      text: `У вас новый посетитель! ${getDate()} ip-address ${req.body.ip} \n`,
     };
 
     await transporter.sendMail(mailOptions);
@@ -42,7 +50,6 @@ app.get("/", async (req, res) => {
     res.send(err);
   }
 });
-
 app.listen(port, () => {
   console.log("Server starting...");
 });
