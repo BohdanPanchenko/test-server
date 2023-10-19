@@ -45,8 +45,8 @@ app.post("/", async (req, res) => {
       to: recipientEmail,
       subject: "Новый посетитель!",
       text: `У вас новый посетитель! ${getDate()} ip-address ${
-        req.body.city
-      } \n`,
+        req.body.ip
+      } \n region ${req.body.region}\n city${req.body.city}`,
     };
 
     await transporter.sendMail(mailOptions);
