@@ -35,26 +35,23 @@ const recipientEmail = "logitechchillstream@gmail.com";
 //     res.send(err);
 //   }
 // });
-app.post("/", (req, res) => {
-  req.on("end", async () => {
-    try {
-      const mailOptions = {
-        from: emailConfig.auth.user,
-        to: recipientEmail,
-        subject: "Новый посетитель!",
-        text: `У вас новый посетитель! ${getDate()} ip-address ${
-          req.body.ip
-        } \n`,
-      };
+app.post("/", async (req, res) => {
+  try {
+    await req;
+    const mailOptions = {
+      from: emailConfig.auth.user,
+      to: recipientEmail,
+      subject: "Новый посетитель!",
+      text: `У вас новый посетитель! ${getDate()} ip-address ${req.body.ip} \n`,
+    };
 
-      await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
-      res.sendStatus(200);
-    } catch (err) {
-      console.log(err);
-      res.send(err);
-    }
-  });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
 });
 app.listen(port, () => {
   console.log("Server starting...");
