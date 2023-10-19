@@ -42,15 +42,13 @@ app.post("/", (req, res) => {
       from: emailConfig.auth.user,
       to: recipientEmail,
       subject: "Новый посетитель!",
-      text: `У вас новый посетитель! ${getDate()} ip-address ${
-        req.body.city
-      } \n`,
+      text: `У вас новый посетитель! ${getDate()} ip-address ${req.body} \n`,
     };
 
     // await transporter.sendMail(mailOptions);
     // res.sendStatus(200);
     res.send({ text: "hello" });
-    console.log(req.body.city);
+    console.log(req.body);
   } catch (err) {
     console.log(err);
     res.send(err);
