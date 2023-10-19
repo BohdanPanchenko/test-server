@@ -6,7 +6,7 @@ dotenv.config();
 const app = express();
 const port = 3000;
 const jsonBodyMiddleware = express.json();
-app.set(jsonBodyMiddleware);
+app.use(jsonBodyMiddleware);
 
 const emailConfig = {
   service: "gmail",
