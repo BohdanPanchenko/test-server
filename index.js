@@ -6,11 +6,12 @@ dotenv.config();
 
 const app = express();
 const port = 3000;
-app.use(cors());
+
 const jsonBodyMiddleware = express.json();
 app.use(jsonBodyMiddleware);
+app.use(cors());
 
-let data = {};
+const ipToIgnore = "37.115.239.24";
 const emailConfig = {
   service: "gmail",
   auth: {
@@ -40,6 +41,7 @@ const recipientEmail = "logitechchillstream@gmail.com";
 // });
 app.post("/", async (req, res) => {
   try {
+    if (req.body.ip === ipToIgnore) return;
     const mailOptions = {
       from: emailConfig.auth.user,
       to: recipientEmail,
