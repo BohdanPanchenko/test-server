@@ -22,23 +22,14 @@ const emailConfig = {
 const transporter = nodemailer.createTransport(emailConfig);
 const recipientEmail = "logitechchillstream@gmail.com";
 
-// app.get("/", async (req, res) => {
-//   try {
-//     const mailOptions = {
-//       from: emailConfig.auth.user,
-//       to: recipientEmail,
-//       subject: "Новый посетитель!",
-//       text: `У вас новый посетитель! ${getDate()} ip-address ${req.ip} \n`,
-//     };
-
-//     await transporter.sendMail(mailOptions);
-
-//     res.sendStatus(200);
-//   } catch (err) {
-//     console.log(err);
-//     res.send(err);
-//   }
-// });
+app.get("/", async (req, res) => {
+  try {
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
 app.post("/", async (req, res) => {
   try {
     const mailOptions = {
