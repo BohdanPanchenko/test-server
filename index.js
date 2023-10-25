@@ -50,7 +50,7 @@ app.post("/", async (req, res) => {
       } \n region: ${req.body.region}\n city: ${req.body.city}`,
     };
 
-    if (!req.body.ip === ipToIgnore) await transporter.sendMail(mailOptions);
+    if (req.body.ip !== ipToIgnore) await transporter.sendMail(mailOptions);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
