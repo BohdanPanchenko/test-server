@@ -41,7 +41,6 @@ const recipientEmail = "logitechchillstream@gmail.com";
 // });
 app.post("/", async (req, res) => {
   try {
-    // if (req.body.ip === ipToIgnore) return;
     const mailOptions = {
       from: emailConfig.auth.user,
       to: recipientEmail,
@@ -51,7 +50,7 @@ app.post("/", async (req, res) => {
       } \n region: ${req.body.region}\n city: ${req.body.city}`,
     };
 
-    await transporter.sendMail(mailOptions);
+    if (!req.body.ip === ipToIgnore) await transporter.sendMail(mailOptions);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);
